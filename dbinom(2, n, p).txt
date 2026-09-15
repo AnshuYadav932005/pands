@@ -1,0 +1,32 @@
+dbinom(2, n, p)
+p2 <- 1-pbinom(1,n,p)
+x <- 0:n
+px <- dbinom(x, n, p)
+EX <- weighted.mean(x, px)
+var <- weighted.mean(x^2, px) - (EX)^2
+
+
+x <- c(0, 1, 2, 3, 4, ...)
+f <- c(...observed frequencies...)
+lambda <- weighted.mean(x, f)
+p <- dpois(x, lambda)
+N <- sum(f)
+expected <- N * p
+result <- data.frame(
+    x = x,
+    Frequency = f,
+    Probability = round(prob, 3),
+    Expected = round(expected, 2)
+)
+result
+
+barplot(
+    rbind(f, expected),
+    beside = TRUE,
+    names.arg = x,
+    col = c("blue", "red"),
+    legend.text = c("Observed", "Expected"),
+    main = "Observed vs Fitted Poisson Distribution",
+    xlab = "Number of errors",
+    ylab = "Frequency"
+)
